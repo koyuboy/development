@@ -13,6 +13,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String text = "Hello";
 
+  final myTrialList = const[
+    "myButton1",
+    "myButton2",
+    "myButton3",
+    "myButton4",
+    "myButton5",
+    "myButton6",
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +45,17 @@ class _MyAppState extends State<MyApp> {
                   text = "button2";
                 });} ,
                 child: Text("button2"),
-              )
+              ),
+              ...(myTrialList as List<String>).map(
+                (myString){
+                  return RaisedButton(
+                    onPressed: null,
+                    child: Text(
+                      myString
+                    ),
+                  );
+                }
+              ).toList(),
             ],
           ),
         ),
