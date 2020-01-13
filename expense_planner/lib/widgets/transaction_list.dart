@@ -5,61 +5,50 @@ import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function _deleteTransaction;
 
-  TransactionList(this.transactions);
+  TransactionList(this.transactions, this._deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      child: ListView.builder(
+    return ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 15,
-                  ),
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  child: Text(
-                    '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Theme.of(context).primaryColor,
+            elevation: 5,
+            margin: EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 5,
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: FittedBox(
+                    child: Text(
+                      '\$${transactions[index].amount}',
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      transactions[index].title,
-                      style: Theme.of(context).textTheme.title
-                    ),
-                    Text(
-                      //If you use special constructuor of DateFormat, you don't need to add pattern as an argument.
-                      DateFormat('MM/dd/yyyy---EEEEEEE')
-                          .format(transactions[index].date),
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
+              title: Text(
+                transactions[index].title,
+                style: Theme.of(context).textTheme.title,
+              ),
+              subtitle: Text(
+                DateFormat('dd/MM/yyyy').format(transactions[index].date),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  _deleteTransaction(transactions[index].id);
+                },
+                icon: Icon(Icons.delete),
+                color: Theme.of(context).errorColor,
+              ),
             ),
           );
         },
         itemCount: transactions.length,
-      ),
     );
   }
 }
