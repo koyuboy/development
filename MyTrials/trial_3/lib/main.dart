@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,57 +23,48 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  Widget stopWatch() {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 6,
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                '00:00:00',
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      RaisedButton(
-                        onPressed: () {},
-                        color: Colors.red,
-                        child: Text(
-                          'Stop',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  final names = ["Enver", "Muhammet", "Ahmet", "Mehmet"];
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData mediaQuery = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trial_3'),
+        title: Text("My Trial_3"),
+      ),
+      body: Center(
+        child: Container(
+          height: (mediaQuery.size.height -
+                  AppBar().preferredSize.height -
+                  mediaQuery.padding.top) *
+              1,
+          width: double.infinity,
+          color: Colors.red,
+          child: LayoutBuilder(
+            builder: (ctx, constraints) => Column(
+              children: <Widget>[
+                ...names
+                    .map(
+                      (item) => Container(
+                        height: constraints.maxHeight * 0.25,
+                        width: constraints.maxWidth * 0.5,
+                        alignment: Alignment.center,
+                        color: Colors.amber,
+                        child: Card(
+                          child: Text(
+                            item,
+                            textScaleFactor: 2.5,
+                          ),
+                          color: Colors.black,
+                          elevation: 10,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
