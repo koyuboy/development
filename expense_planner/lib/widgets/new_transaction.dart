@@ -1,6 +1,3 @@
-import 'dart:io'; //In order to use Platform.isIOS
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,16 +6,43 @@ import './adaptive_flat_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function _addTransaction;
 
-  NewTransaction(this._addTransaction);
+  NewTransaction(this._addTransaction) {
+    print("Constructor NewTransaction Widget");
+  }
 
   @override
-  _NewTransactionState createState() => _NewTransactionState();
+  _NewTransactionState createState() {
+    print("createState NewTransaction Widget");
+    return _NewTransactionState();
+  }
 }
 
 class _NewTransactionState extends State<NewTransaction> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime _selectedDate;
+
+  _NewTransactionState() {
+    print("Constructor NewTransactionState");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print("initState()");
+  }
+
+  @override
+  void didUpdateWidget(NewTransaction oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget()");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print("dispose()");
+  }
 
   void _submitData() {
     if (_amountController.text.isEmpty) return;
@@ -55,6 +79,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
+    print("build NewTransaction Widget");
     return SingleChildScrollView(
       child: Card(
         elevation: 5,
@@ -99,7 +124,7 @@ class _NewTransactionState extends State<NewTransaction> {
                             : 'picked Date: ${DateFormat('dd/MM/yyyy').format(_selectedDate)}',
                       ),
                     ),
-                    AdaptiveFlatButton('Choose Date' ,_presentDatePicker)
+                    AdaptiveFlatButton('Choose Date', _presentDatePicker)
                   ],
                 ),
               ),
