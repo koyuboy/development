@@ -53,6 +53,8 @@
     * DefaultTabController(...)
       * length:
          * any integer
+      * initialIndex: 
+         * any integer (it is 0 as default)
       * child: 
          * Scaffold(...)
       * appBar: 
@@ -61,6 +63,8 @@
             * TabBar( tabs: <Widget> [])
                * We should add Tab(...) widgets inside the tabs:
                * make sure your list's length should be equal to length argument above.
+      * body: 
+         * TabBarView()
 2. Registering a screen as the main screen
    * Just use named argument which is called as 'home:' in materialApp
    * If you decide to use namedRoutes, you may determine it as '/': (ctx) => AnyWidgetScreen()
