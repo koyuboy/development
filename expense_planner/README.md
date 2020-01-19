@@ -37,16 +37,21 @@
       * final => runTime
       * const => compileTime
     * spread operator (...)
-    * Some useful widget that we may override in stateful widget
-      * initState()
-      * didUpdateWidget()
-      * dispose()
-6. App LİfeCycle
+6. Widget Lifecycle
+    1. Stateless Widget 
+        * Constructor Function => build()
+    2. Stateful Widget
+        * Constructor Function => initState() => build() => setState((){}) => didUpdateWidget()O => build() => dispose()
+        * Some useful widget that we may override in stateful widget
+          * initState()
+          * didUpdateWidget()
+          * dispose()
+7. App LifeCycle
     * inactive
     * paused
     * resumed
     * suspending
-7. mixin classes and also with keyword
-8. Keys
+8. mixin classes and also with keyword
+9. Keys
     * Every flutter widget can have a key. However, we rarely use it most of the time, flutter's implicit key is sufficient.
     * ValueKey(...) we may use id inside of the function as an argument.
