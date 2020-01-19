@@ -12,6 +12,22 @@
       * It's like gesture detector but it also has a wave affect
       * splashColor:
       * borderRadius: (In my oppinion it should match with container's borderRadius if it has).
+    * Card(...)
+      * Card is not a new widget but i've learned as new it's argument which is shape:
+      * shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(...))
+    * ClipRRect(...)
+      * I've used it for adding 'borderRadius:'.
+      * I wrapped my Image widget with this widget because Image widget is does not support borderRadius.
+    * Stack(...)
+      * I've used it because it allows us to create nested widgets.
+      * I needed to add Text() widget above the image.
+    * Text(...)
+      * I've learned softWrap and overflow, we may say that these are safe mechanism.
+    * Positioned(...)
+      * It only works inside a Stack(...) widget.
+      * Positioned allows us to position the child widget in an absolute cordinate space.
+      * It's arguments: left, right, bottom, top, height and width.
+      * Example: when you feed right argument with 10 it means the distance of the widget from rigth is 10 pixels.
       
 2. Registering a screen as the main screen
    * Just use named argument which is called as 'home:' in materialApp
