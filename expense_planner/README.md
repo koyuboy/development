@@ -55,3 +55,6 @@
 9. Keys
     * Every flutter widget can have a key. However, we rarely use it most of the time, flutter's implicit key is sufficient.
     * ValueKey(...) we may use id inside of the function as an argument.
+10. Adding logics to apps
+    * ternary expression
+    * if statements
