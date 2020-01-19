@@ -1,3 +1,5 @@
+You may define it as stateless Widget as well, it'll work properly.
+
 ````
 import 'package:flutter/material.dart';
 
