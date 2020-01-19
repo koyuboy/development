@@ -21,7 +21,6 @@ class TransactionItem extends StatefulWidget {
 
 class _TransactionItemState extends State<TransactionItem> {
   Color _bgColor;
-  
 
   @override
   void initState() {
@@ -33,7 +32,7 @@ class _TransactionItemState extends State<TransactionItem> {
       Colors.purple,
     ]; //Pointer will be run-time constant
 
-    _bgColor = availableColors[Random().nextInt(4)];  
+    _bgColor = availableColors[Random().nextInt(4)];
   }
 
   @override
@@ -45,7 +44,7 @@ class _TransactionItemState extends State<TransactionItem> {
         horizontal: 5,
       ),
       child: ListTile(
-        leading: CircleAvatar( 
+        leading: CircleAvatar(
           backgroundColor: _bgColor,
           radius: 30,
           child: Padding(
