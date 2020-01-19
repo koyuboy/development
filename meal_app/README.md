@@ -65,6 +65,7 @@
                * make sure your list's length should be equal to length argument above.
       * body: 
          * TabBarView()
+   * drawer: Drawer(...)
 2. Registering a screen as the main screen
    * Just use named argument which is called as 'home:' in materialApp
    * If you decide to use namedRoutes, you may determine it as '/': (ctx) => AnyWidgetScreen()
@@ -79,4 +80,8 @@
    * final routeArgs = ModalRoute.of(context).settings.arguments  (you should also add 'as' keyword because it was an Object type)
    * Advice: Use static const property for definining routeName in class, it's more convenient way to get proper error messages.
    
-5. Reminder: Don't forget to create your own build methods.
+5. Reminder: Don't forget to create your own build methods.  
+6. Replacing pages instead of pushing.
+   * pushReplacementNamed(...)
+   * When we use pushReplacementNamed(...) there won't be a back button because there is no any page in stack.
+   * if you don't use this approach, stack will constantly increase and your app will work slowly.
