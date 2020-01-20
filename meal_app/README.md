@@ -66,6 +66,13 @@
       * body: 
          * TabBarView()
    * drawer: Drawer(...)
+   * floatingActionButton: FloatingActionButton(...)
+   * floatingActionButtonLocation: FloatingActionButtonLocation.(There are some static const properties that you can use).
+   * Navigator.of(context).pop(...)
+      * It's really useful for passing data to back.
+      * You may send any data to back with pop method (List, Map, int, String so on). 
+      * you may add then function. When new page is pop works 'then()' method.
+      * pop function returns Future object that's why we have a chance to use 'then' method.
 2. Registering a screen as the main screen
    * Just use named argument which is called as 'home:' in materialApp
    * If you decide to use namedRoutes, you may determine it as '/': (ctx) => AnyWidgetScreen()
@@ -85,3 +92,28 @@
    * pushReplacementNamed(...)
    * When we use pushReplacementNamed(...) there won't be a back button because there is no any page in stack.
    * if you don't use this approach, stack will constantly increase and your app will work slowly.
+7. If a function returns Future object, you may use then method there.
+   * .then(()=> ...) it gets another function.
+8. Don't use 'context' in initState because initState runs too early.
+   * If you do this, it's really taugh to understand the error.
+   * For instance, don't use ModalRoute.of(context), Theme.of(context) etc.
+   * The solution in this circumstance is to use changeDependencies() it's another method.
+9. DidChangeDependencies(...)
+   * It runs couple of time after initState(...) that's the difference between initState(...) and DidChangeDependencies(...)
+10. How to data pass back and use the data.
+   * In This app we wanted to delete the meal temporarily if someone deletes it in meal_detail_screen.
+   * This was relatively tough but this approach is really essential for this course.
+   * In this approach we've deleted item but when you open that page again it'll be seen again.
+   * Firstly, the page will change when data come. Therefore, we convert the screen to statefulWidget(category_meals_screen).
+   * We tried to define the variables in initState(...) with this way when the state have been created all variable will be created.
+   * However, in this approah there was a problem which is really important. InitState works really early.
+   * If you use initState in this circumstance you'll get an error which is really hard to understand why you get this error.
+   * The error because of the variable which contains 'context' if you use something in initState which contains 'context'
+   * It causes errors.
+   * We decided to use didChangeDependencies(...) instead of initState and it was okay we didn't get any error.
+   * However, it didn't work properly because when we pop data it worked again and it initialized datas again.
+   * We figured out the problem then, solution was pretty simple we defined a variable whichs boolean type.
+   * It decides whether we loadedData or not.
+   * If it's false it loads the datas (It also initializes when we create the state, when we come frome previous page)
+   * With this way it has been initiliazed when the state created (it located in stack)
+   * When we pop new page, previous page is our screen that we want to change and it changed properly.
