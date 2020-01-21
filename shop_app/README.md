@@ -1,16 +1,16 @@
 # shop_app
 
 1. New Widgets
-  * GridTile(...)
-    * You may combine it with GridView(...) or GridView.builder(...)
-  * GridTileBar(..)
-    * You may use it in GridTile(footer: GridTileBar(...))
-  * PopUpMenuButton(...)
-    * You should use it in actions
-    * You may add icon: 
-    * Also you have to add itemBuilder:
-    *itemBuilder: (ctx) => [PopupMenuItem(), PopUpMenuItem(), ...]
-  * PopMenuItem(...)
+   * GridTile(...)
+     * You may combine it with GridView(...) or GridView.builder(...)
+   * GridTileBar(..)
+     * You may use it in GridTile(footer: GridTileBar(...))
+   * PopUpMenuButton(...)
+     * You should use it in actions
+     * You may add icon: 
+     * Also you have to add itemBuilder:
+     * itemBuilder: (ctx) => [PopupMenuItem(), PopUpMenuItem(), ...]
+   * PopMenuItem(...)
 2. State Management
     * It's especially important for complicated apps.
     * When we use it?
