@@ -11,6 +11,11 @@
      * Also you have to add itemBuilder:
      * itemBuilder: (ctx) => [PopupMenuItem(), PopUpMenuItem(), ...]
    * PopMenuItem(...)
+   * Chip(...)
+   * Spacer(...)
+   * FittedBox(...)
+   * Dismissible(...)
+      * You may use it with texts.
 2. State Management
     * It's especially important for complicated apps.
     * When we use it?
@@ -19,7 +24,7 @@
       * you need to pass data right? all over some widget that does not need this data.
       * This is really cumbersome and inefficient so we'll use state management.
 3. ChangeNotifier
-   * We mixin('with') it with our provider class which includes data.
+   * We used mixin('with') it with our provider class which includes data.
    * class ProductsProvider with ChangeNotifier{...}
 4. notifyListeners(...)
    * When we want to notify listeners about our change.
@@ -62,4 +67,31 @@
     * !!! and if you define some widgets in this child these widgets will not be rebuilded after notifyListeners().
     * This child can be a complex widget or custom widget.
     * you can point your child as well (label: child) 
-    
+ 9. badge.dart file:
+    * This file is essential for you because when you look at this file you may see that
+    * you can create your own individual widget which may include tons of things.
+    * Then, you may also use this widget in your app. 
+ 
+10. ListView(...) doesn't work directly inside of the Column(...) widget.
+    * You may use Expanded(...) widget or Container(...) etc. 
+11. If you have a conflict in your libraries when you try to add them
+    * You may use this approach:  'as'
+      * import '../.....' as ci;  
+      * You can use ci as prefix while you're using that class. 
+    * You may use this approach as well:  'show'
+      * in a import if there are 2 or more than classes.
+      * And you imported that file just for one class or except of conflicted class.
+      * you may use show keyword and you use only one class from that file.
+12. You may want to convert your map's values to a list.
+    * This is pretty straightforward, for instance, your map's name is items 
+    * items.values().toList() now you can use indexes as like list.
+13. softwrap: argument can be important in text(...) widgets
+    * if you have text widget and for example if you have limited width.
+    * You may say softwrap: false, with this way you can restrict your text.
+14. Do your logics in your ChangeNotifier classes
+    * With this way you can increase your code readability and efficiency.
+15. If your states only affects that widget
+    * In this situation you should not use Provider package,
+    * sufficient to use Stateful widget in these circumstances.
+    * It's more efficient.
+    * Don't forget to look over Local State and App-wide state again.
