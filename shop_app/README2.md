@@ -32,7 +32,8 @@
     * You should dispose your FocusNode objects.
     * Inside of the dispose method of stateful widget you should dispose these objects.
     * With this way you can avoid memory leaks.
-
+5. there are a lot of things in edit_product_screen 
+    * Therefore, please check it out occasionally.
 
 [snackBar]: https://blog.iamsuleiman.com/wp-content/uploads/2017/01/snackbar_header.png
 [showDialog]: https://newcodingera.com/wp-content/uploads/2019/09/custom-%E2%80%93-1@2x.jpg
