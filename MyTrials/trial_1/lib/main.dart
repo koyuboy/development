@@ -1,64 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import './providers/humans_provider.dart';
+import './screens/first_page.dart';
+import './screens/second_page.dart';
+import './screens/third_page.dart';
 
 void main() => runApp(MyApp());
 
-
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String text = "Hello";
-
-  final myTrialList = const[
-    "myButton1",
-    "myButton2",
-    "myButton3",
-    "myButton4",
-    "myButton5",
-    "myButton6",
-  ];
-
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("MyAppBar"),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              Text(text),
-              RaisedButton(
-                onPressed: (){setState(() {
-                  text = "button1";
-                });},
-                child: Text("button1"),
-              ),
-              RaisedButton(
-                onPressed: (){setState(() {
-                  text = "button2";
-                });} ,
-                child: Text("button2"),
-              ),
-              ...(myTrialList as List<String>).map(
-                (myString){
-                  return RaisedButton(
-                    onPressed: null,
-                    child: Text(
-                      myString
-                    ),
-                  );
-                }
-              ).toList(),
-            ],
+    return ChangeNotifierProvider(
+      create: (ctx) => HumansProvider(),
+      child: MaterialApp(
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.green,
+            textTheme: ButtonTextTheme.normal,
+          ),
+          textTheme: TextTheme(
+            body1: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold
+            ),
+            title: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
+        initialRoute: FirstPage.routeName,
+        routes: {
+          FirstPage.routeName: (ctx) => FirstPage(),
+          SecondPage.routeName: (ctx) => SecondPage(),
+          ThirdPage.routeName: (ctx) => ThirdPage(),
+        },
       ),
     );
   }

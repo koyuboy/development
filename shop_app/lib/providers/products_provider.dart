@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-import '../models/product.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import './product.dart';
 
 class ProductsProvider with ChangeNotifier {
   List<Product> _items = [
@@ -38,14 +41,87 @@ class ProductsProvider with ChangeNotifier {
     ),
   ];
 
+  //var _showFavoritesOnly = false;
+
   List<Product> get items {
     return [
       ..._items
     ]; //With this way we returns a copy, this is really important!!!
   }
 
-  void addProduct() {
-    // _items.add(value);
+  List<Product> get favoriteItems {
+    return _items.where((product) => product.isFavorite == true).toList();
+  }
+
+  Future<void> addProduct(Product product) async {
+    const url = 'https://flutter-update-fcbe2.firebaseio.com/products';
+    http
+        .post(
+      url,
+      body: json.encode(
+        {
+          'title': product.title,
+          'description': product.description,
+          'imageUrl': product.imageUrl,
+          'price': product.price,
+          'isFavorite': product.isFavorite,
+        },
+      ),
+    )
+        .then(
+      (response) {
+        print(json.decode(response.body));
+        final newProduct = Product(
+          id: json.decode(response.body)['name'],
+          title: product.title,
+          price: product.price,
+          description: product.description,
+          imageUrl: product.imageUrl,
+        );
+        _items.add(newProduct);
+        // _items.insert(0, newProduct); //at the start of the list.
+        notifyListeners();
+      },
+    ).catchError(
+      (error){
+        print(error);
+        throw error;
+      }
+    );
+  }
+
+  // void showFavoritesOnly()
+  // {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll()
+  // {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
+  Product findProduct(String id) {
+    return _items.firstWhere(
+      (prod) {
+        return prod.id == id;
+      },
+    );
+  }
+
+  void updateProducts(String id, Product newProduct) {
+    final prodIndex = _items.indexWhere((prod) => prod.id == id);
+    if (prodIndex >= 0) {
+      _items[prodIndex] = newProduct;
+      notifyListeners();
+    } else {
+      print('...');
+    }
+  }
+
+  void deleteProduct(String id) {
+    _items.removeWhere((item) => item.id == id);
     notifyListeners();
   }
 }
