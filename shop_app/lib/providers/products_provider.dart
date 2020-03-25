@@ -41,8 +41,6 @@ class ProductsProvider with ChangeNotifier {
     ),
   ];
 
-  //var _showFavoritesOnly = false;
-
   List<Product> get items {
     return [
       ..._items
@@ -55,7 +53,7 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     const url = 'https://flutter-update-fcbe2.firebaseio.com/products';
-    http
+    return http
         .post(
       url,
       body: json.encode(
@@ -83,24 +81,12 @@ class ProductsProvider with ChangeNotifier {
         notifyListeners();
       },
     ).catchError(
-      (error){
+      (error) {
         print(error);
         throw error;
-      }
+      },
     );
   }
-
-  // void showFavoritesOnly()
-  // {
-  //   _showFavoritesOnly = true;
-  //   notifyListeners();
-  // }
-
-  // void showAll()
-  // {
-  //   _showFavoritesOnly = false;
-  //   notifyListeners();
-  // }
 
   Product findProduct(String id) {
     return _items.firstWhere(

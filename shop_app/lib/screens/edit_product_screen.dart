@@ -79,7 +79,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
         (!_imageUrlController.text.endsWith('.png') &&
             !_imageUrlController.text.endsWith('.jpg') &&
             !_imageUrlController.text.endsWith('.jpeg'))) return;
-
     setState(() {});
   }
 
@@ -87,21 +86,29 @@ class _EditProductScreenState extends State<EditProductScreen> {
     final isValid = _form.currentState.validate();
     if (!isValid) return; //This cancels the function execution.
     _form.currentState.save();
-    setState(() {
-      _isLoading = true;
-    });
+    setState(
+      () {
+        _isLoading = true;
+      },
+    );
     if (_editedProduct.id != null) {
       Provider.of<ProductsProvider>(context, listen: false)
           .updateProducts(_editedProduct.id, _editedProduct);
-      setState(() {
-        _isLoading = false;
-      });
+      setState(
+        () {
+          _isLoading = false;
+        },
+      );
       Navigator.of(context).pop();
     } else {
       Provider.of<ProductsProvider>(context, listen: false)
           .addProduct(_editedProduct)
-          .catchError((error) {
-        return showDialog(  
+          .then(
+        (_) {
+          Navigator.of(context).pop();
+        },
+      ).catchError((error) {
+        return showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
             title: Text('An error ocurred'),
@@ -115,12 +122,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
               )
             ],
           ),
-        ).then((_) {
-          setState(() {
-            _isLoading = false;
-          });
-          Navigator.of(context).pop();
-        });
+        ).then(
+          (_) {
+            setState(() {
+              _isLoading = false;
+            });
+            Navigator.of(context).pop();
+          },
+        );
       });
     }
   }
