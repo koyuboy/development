@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/phrasal_verbs_provider.dart';
-import '../widgets/unit_detailed.dart';
+import '../widgets/each_unit_items.dart';
 
-class UnitScreen extends StatelessWidget {
+class EachUnitScreen extends StatelessWidget {
   static const screenName = '/unit-screen';
 
   @override
@@ -28,7 +28,7 @@ class UnitScreen extends StatelessWidget {
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
         ),
-        itemBuilder: (ctx, index) => UnitDetailed(prod.getWithUnitNumber(unitNumber)[index]),
+        itemBuilder: (ctx, index) => EachUnitItems(prod.getWithUnitNumber(unitNumber)[index]),
         itemCount: prod.getWithUnitNumber(unitNumber).length,
       ),
     );
