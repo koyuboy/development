@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/unit_items.dart';
+import '../widgets/home_units_items.dart';
 import '../widgets/my_drawer.dart';
 
-class MyHomePage extends StatelessWidget {
+class HomeUnitsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: 20,
-        itemBuilder: (ctx, index) => UnitItems(unitNumber: index),
+        itemBuilder: (ctx, index) => HomeUnitsItems(unitNumber: index),
       )
     );
   }

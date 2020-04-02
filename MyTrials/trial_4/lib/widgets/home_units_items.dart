@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../screens/unit_screen.dart';
+import '../screens/each_unit_screen.dart';
 
-class UnitItems extends StatelessWidget {
+class HomeUnitsItems extends StatelessWidget {
   final int unitNumber;
 
-  UnitItems({
+  HomeUnitsItems({
     @required this.unitNumber,
   });
 
@@ -14,7 +14,7 @@ class UnitItems extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => Navigator.of(context)
-          .pushNamed(UnitScreen.screenName, arguments: unitNumber + 1),
+          .pushNamed(EachUnitScreen.screenName, arguments: unitNumber + 1),
       child: Card(
         elevation: 10,
         margin: EdgeInsets.all(10),
