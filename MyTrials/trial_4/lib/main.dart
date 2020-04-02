@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<PhrasalVerbsProvider>(
-            create: (_) => PhrasalVerbsProvider()),
+          create: (_) => PhrasalVerbsProvider(),
+        ),
       ],
       child: MaterialApp(
         title: "Phrasal Verbs",
