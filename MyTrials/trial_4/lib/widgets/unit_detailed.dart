@@ -14,10 +14,8 @@ class UnitDetailed extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.all(8.0),
         child: GestureDetector(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => PhrasalVerbScreen(singleItem),
-            ),
+          onTap: () => Navigator.of(context).pushNamed(
+            PhrasalVerbScreen.screenName, arguments: singleItem,
           ),
           child: GridTile(
             footer: Text(
