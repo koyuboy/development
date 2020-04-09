@@ -22,7 +22,8 @@ class EachPhrasalVerbScreen extends StatelessWidget {
                 image: AssetImage(singleItem.imageUrl),
                 fit: BoxFit.cover,
               ),
-              title: Text('${singleItem.phrasalVerb}'),
+              title: Container(child: Text('${singleItem.phrasalVerb}'),
+              color: Colors.black54,),
             ),
           ),
           SliverList(

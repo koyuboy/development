@@ -51,6 +51,9 @@ flutter:
    - assets/images/look_over.jpg
    - assets/images/look_round.jpg
    - assets/images/look_into.png
+   - assets/images/take_after.jpg
+   - assets/images/grow_up.jpg
+   - assets/images/look_back.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
